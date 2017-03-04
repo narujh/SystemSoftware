@@ -1,0 +1,14 @@
+do {
+int c = count * 10
+p = p + c
+} while ( count >= 10 )
+DO_KW -> 'do'
+L_FB -> '{'
+VAR_TYPE -> "int|char|bool"
+VAR_NAME -> "[a-z_][a-z0-9_]*"
+DIGIT -> "0|[1-9][0-9]*"
+LOGIC_OP -> "(-|\+|>|<|\*|\/)"
+R_FB -> '}'
+WHILE_KW -> 'while'
+LB -> '('
+RB -> ')'
