@@ -36,7 +36,7 @@ public class source {
 	 * "     Word: " + words[i]); } } } } }
 	 */
 
-	public static void targetFunc(String input) {
+	public static void targetFunc_v1(String input) {
 		System.out.println("Input:\n \"" + newStr + "\"\n");
 		String buffer = "";
 		String tmp = "";
@@ -78,6 +78,47 @@ public class source {
 			 * { System.out.println(buffer); Main.tokkenList.add(new
 			 * tokken(buffer, l.getName())); break; } } i = j + 1; j = 0 ; } }
 			 */
+		}
+	}
+	
+	public static void targetFunc(String input) {
+		System.out.println("Input:\n \"" + newStr + "\"\n");
+		String currentWord = "";
+		String previousWord = "";
+		bool isValid = true;
+		int j = 0;
+		for (int i = 0; i < input.length(); i++) {
+			for (int j = 0; j < input.lenght(); j++)
+			{
+				currentWord = input.substring(i, i + j);
+				for (Lexer l : Main.lexems)
+				{
+					Pattern pat = l.getPattern();
+					Matcher m = pat.matcher(buffer);
+					if (m.matches()) {
+						previousWord = currentWord;
+						break;
+					}
+					isValid = false;
+				}
+				if (!isValid && !previousWord.isEmpty())
+				{
+					Main.tokkenList.add(new tokken(currentWord, l.getName()));
+					i = i + j + 1;
+					j = 0;
+					isValid = true;
+					currentWord = "";
+					previousWord = "";
+				}
+				if (!isValid && previousWord.isEmpty())
+				{
+					i = i + j + 1;
+					j = 0;
+					isValid = true;
+					currentWord = "";
+					previousWord = "";
+				}
+			}
 		}
 	}
 }
