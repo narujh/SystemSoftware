@@ -4,6 +4,8 @@ import java.util.regex.Pattern;
 public class Source {
 
 	public static void Init() {
+		Main.lexems.add(new Lexem("END", Pattern
+				.compile("^end$")));
 		Main.lexems.add(new Lexem("FOR_KW", Pattern
 				.compile("^for$")));
 		Main.lexems.add(new Lexem("WHILE_KW", Pattern
@@ -28,12 +30,14 @@ public class Source {
 				.compile("^\\)$")));
 		Main.lexems.add(new Lexem("EL", Pattern
 				.compile("^;$")));
+		Main.lexems.add(new Lexem("END", Pattern
+				.compile("^end$")));
 	}
 
-	static String newStr = "if ( o == 10 ) char z = i ; while ( count <= 21 ) i + 1 ;  ";
+	static String newStr = "if ( o == 10 ) char z = i ; while ( count <= 21 ) i + 1 ; end  ";
 	
 	public static void targetFunc(String input) {
-		System.out.println("Input:\n \"" + newStr + "\"\n");
+		System.out.println("Input:\n \"" + input + "\"\n");
 		String currentWord = "";
 		Lexem found = null;
 		for (int i = 0; i < input.length(); i++) {

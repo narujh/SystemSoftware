@@ -1,0 +1,1 @@
+if ( o == 10 ) char z = i ; while ( count <= 21 ) i + 1 ; end  
