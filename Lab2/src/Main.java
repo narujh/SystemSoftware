@@ -10,7 +10,6 @@ public class Main {
 	{
 		Source.Init();
 
-        String str;
         File f = new File("qwe.txt");
         BufferedReader fin = new BufferedReader(new FileReader(f));
         String line;

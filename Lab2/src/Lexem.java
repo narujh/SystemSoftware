@@ -13,7 +13,6 @@ public class Lexem {
 		return name;
 	}
 
-
 	public Pattern getPattern() {
 		return p;
 	}

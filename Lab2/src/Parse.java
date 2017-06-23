@@ -189,7 +189,7 @@ public class Parse {
 	
 	public void VALUE()
 	{
-		if (!(Main.tokenList.get(i).getLexema().equals("VAR_NAME")|Main.tokenList.get(i).getLexema().equals("DIGIT")))
+		if (!(Main.tokenList.get(i).getLexema().equals("VAR_NAME") | Main.tokenList.get(i).getLexema().equals("DIGIT")))
 		{
 			System.out.println("\nMust be VAR_NAME or DIGIT");
 			System.out.println(Main.tokenList.get(i).getLexema());
