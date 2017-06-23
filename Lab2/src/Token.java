@@ -1,5 +1,5 @@
-public class tokken {
-	public tokken(String str, String lex) {
+public class Token {
+	public Token(String str, String lex) {
 		this.lexema = lex;
 		this.str = str;
 	}
@@ -7,6 +7,7 @@ public class tokken {
 	private String str;
 	private String lexema;
 
+	
 	public String getStr() {
 		return str;
 	}
@@ -16,6 +17,6 @@ public class tokken {
 	}
 
 	public void print() {
-		System.out.println("Word: " + str + "             Lexema: " + lexema);
+		System.out.println("Word: " + str + " Lexema: " + lexema);
 	}
 }

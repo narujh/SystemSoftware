@@ -1,37 +1,51 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class source {
+public class Source {
 
 	public static void Init() {
-		Main.lexems.add(new Lexer("OPERATORS", Pattern
-				.compile("^(for|while|if)$"), 0));
-		Main.lexems.add(new Lexer("VAR_TYPE", Pattern
-				.compile("^(int|bool|double|char)$"), 0));
-		Main.lexems.add(new Lexer("DIGIT",
-				Pattern.compile("^(0|[1-9][0-9]*)$"), 1));
-		Main.lexems.add(new Lexer("OPERATIONS", Pattern
-				.compile("^(==|-|\\+|>|<|\\*|\\/|=|<=|')$"), 0));
-		Main.lexems.add(new Lexer("VAR_NAME", Pattern
-				.compile("^([a-z][a-z0-9]*)$"), 1));
+		Main.lexems.add(new Lexem("FOR_KW", Pattern
+				.compile("^for$")));
+		Main.lexems.add(new Lexem("WHILE_KW", Pattern
+				.compile("^while$")));
+		Main.lexems.add(new Lexem("IF_KW", Pattern
+				.compile("^if$")));
+		Main.lexems.add(new Lexem("VAR_TYPE", Pattern
+				.compile("^(int|bool|double|char)$")));
+		Main.lexems.add(new Lexem("DIGIT",
+				Pattern.compile("^(0|[1-9][0-9]*)$")));
+		Main.lexems.add(new Lexem("OPERATIONS", Pattern
+				.compile("^(==|>|<|<=|>=')$")));
+		Main.lexems.add(new Lexem("MATH", Pattern
+				.compile("^(-|\\+|\\*|\\/')$")));
+		Main.lexems.add(new Lexem("ASSIGN_OP", Pattern
+				.compile("^=$")));
+		Main.lexems.add(new Lexem("VAR_NAME", Pattern
+				.compile("^([a-z][a-z0-9]*)$")));
+		Main.lexems.add(new Lexem("LB", Pattern
+				.compile("^\\($")));
+		Main.lexems.add(new Lexem("RB", Pattern
+				.compile("^\\)$")));
+		Main.lexems.add(new Lexem("EL", Pattern
+				.compile("^;$")));
 	}
 
-	static String newStr = "if (int i == 10) char z = ' i '; while (count <= 21);";
+	static String newStr = "if ( o == 10 ) char z = i ; while ( count <= 21 ) i + 1 ;  ";
 	
 	public static void targetFunc(String input) {
 		System.out.println("Input:\n \"" + newStr + "\"\n");
 		String currentWord = "";
-		Lexer found = null;
+		Lexem found = null;
 		for (int i = 0; i < input.length(); i++) {
-			for (int j = i+1 ; j < input.length(); j++)
+			for (int j = i ; j < input.length(); j++)
 			{
 				currentWord = input.substring(i, j);
 				System.out.println(currentWord);
-				Lexer newFind = findLexems(currentWord);
+				Lexem newFind = findLexems(currentWord);
 				if (newFind == null){
 					if (found != null)				
 					{
-						Main.tokkenList.add(new tokken(currentWord.substring(0,currentWord.length()-1), found.getName()));
+						Main.tokenList.add(new Token(currentWord.substring(0,currentWord.length()-1), found.getName()));
 						System.out.println(found.getName());
 						found = null;
 					}
@@ -41,9 +55,10 @@ public class source {
 			}
 		}
 	}
-	static Lexer findLexems(String input)
+	
+	static Lexem findLexems(String input)
 	{
-		for (Lexer l : Main.lexems)
+		for (Lexem l : Main.lexems)
 		{
 			Pattern pat = l.getPattern();
 			Matcher m = pat.matcher(input);

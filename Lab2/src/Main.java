@@ -2,17 +2,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-	public static List<Lexer> lexems = new ArrayList<Lexer>();
-	public static List<tokken> tokkenList = new ArrayList<tokken>();
+	public static List<Lexem> lexems = new ArrayList<Lexem>();
+	public static List<Token> tokenList = new ArrayList<Token>();
 
 	public static void main(String[] args) {
-		source.Init();
+		Source.Init();
 		int i = 0;
-		source.targetFunc(source.newStr);
-		for (tokken l : tokkenList) {
+		Source.targetFunc(Source.newStr);
+		for (Token l : tokenList) {
 			System.out.println("\n" + (i++) + ":");
 			l.print();
+			System.out.println("\n");
 		}
+		new Parse();
+		
 	}
 
 }
